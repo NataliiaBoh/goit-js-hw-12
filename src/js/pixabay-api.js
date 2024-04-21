@@ -25,6 +25,7 @@ export async function searchImages(value, page) {
               title: 'Error',
               message:
                 'Sorry, there are no images matching your search query. Please try again!',
+                
             });
         }
       }  

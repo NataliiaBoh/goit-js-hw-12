@@ -44,23 +44,32 @@ try {
    
     refs.loaderEl.style.display = 'none';
 
-    iziToast.success({
-        title: 'Wow',
-        message: `We found ${data.totalHits} pictures!`,
-      });
-
+    if (!data.totalHits) {
+        iziToast.error({
+            title: 'Oops',
+            message: 'Undefined',
+            });
+    } else {
+   
+        iziToast.success({
+            title: 'Wow',
+            message: `We found ${data.totalHits} pictures!`,
+          });
+        }
+    
     if (currentPage === totalPages) {
         refs.buttonMoreEl.style.display = 'none';
         refs.ehdLoaderEl.style.display = 'block';
       } else {
+        if (!data.totalHits) {
+            refs.buttonMoreEl.style.display = 'none';
+        } else {
         refs.buttonMoreEl.style.display = 'block';
       }
-
- 
+    }
 } catch (error) {console.log(error)};
   
   lightbox.refresh();
-  searchInput = '';
   refs.loaderEl.style.display = 'none';
     
 }
@@ -93,7 +102,6 @@ async function handleClick() {
   });
 
   lightbox.refresh();
-  searchInput = '';
   refs.loaderMoreEl.style.display = 'none';  
   }
 
