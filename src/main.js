@@ -41,7 +41,7 @@ try {
     const data = await searchImages(searchInput, currentPage);
     const totalPages = Math.ceil(data.totalHits / perPage);
     refs.imagesList.insertAdjacentHTML('beforeend', createMarcup(data.hits));
-   
+    refs.formEl.reset();
     refs.loaderEl.style.display = 'none';
 
     if (!data.totalHits) {
@@ -88,7 +88,7 @@ async function handleClick() {
         const data = await  searchImages(searchInput, currentPage);
         const totalPages = Math.ceil(data.totalHits / perPage);
         refs.imagesList.insertAdjacentHTML('beforeend', createMarcup(data.hits));
-        refs.formEl.reset();
+        // refs.formEl.reset();
         if (currentPage === totalPages) {
             refs.buttonMoreEl.style.display = 'none';
             refs.ehdLoaderEl.style.display = 'block';
