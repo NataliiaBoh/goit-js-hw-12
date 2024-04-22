@@ -67,7 +67,11 @@ try {
         refs.buttonMoreEl.style.display = 'block';
       }
     }
-} catch (error) {console.log(error)};
+} catch (error) {loader.style.display = "none";
+return iziToast.error({
+    message: `${error.message}`,
+    position: "topCenter"});
+};
   
   lightbox.refresh();
   refs.loaderEl.style.display = 'none';
@@ -84,6 +88,7 @@ async function handleClick() {
         const data = await  searchImages(searchInput, currentPage);
         const totalPages = Math.ceil(data.totalHits / perPage);
         refs.imagesList.insertAdjacentHTML('beforeend', createMarcup(data.hits));
+        refs.formEl.reset();
         if (currentPage === totalPages) {
             refs.buttonMoreEl.style.display = 'none';
             refs.ehdLoaderEl.style.display = 'block';
@@ -91,7 +96,12 @@ async function handleClick() {
             refs.buttonMoreEl.style.display = 'block';
           }
 
-    } catch (error) {console.log(error)};
+    } catch (error) {
+        loader.style.display = "none";
+    return iziToast.error({
+        message: `${error.message}`,
+        position: "topCenter"});
+    }
 
     const height = () =>
     refs.imadgeItem.getBoundingClientRect().height;
