@@ -26,7 +26,7 @@ refs.formEl.addEventListener('submit', handleSubmit);
 
  async function handleSubmit(event){
     event.preventDefault();
- 
+    currentPage = 1;
     refs.loaderEl.style.display = 'block';
     refs.imagesList.innerHTML = '';
 
